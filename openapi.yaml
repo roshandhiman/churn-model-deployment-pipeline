@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Churn Model API
+  version: 1.0.0
+  description: Secure telecom churn prediction service
+servers:
+  - url: http://localhost:8000
+paths:
+  /health:
+    get:
+      responses:
+        '200':
+          description: Service status
+  /predict:
+    post:
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Single prediction
+  /predict/batch:
+    post:
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Batch predictions
+  /drift:
+    post:
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: PSI drift report
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
